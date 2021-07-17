@@ -368,14 +368,19 @@ class LogicNormal(object):
                         movie['more']['country'] = movie['country']
 
                 if 'eng_title' in movie['more']:
+                    movie['more']['eng_title'] = '%s' % (re.sub('[\\/:*?"<>|]', '', movie['more']['eng_title']).replace('  ', ' '))                    
                     tmp = tmp.replace('%ENG_TITLE%', movie['more']['eng_title'])
                 if 'country' in movie['more']:
+                    movie['more']['country'] = '%s' % (re.sub('[\\/:*?"<>|]', '', movie['more']['country']).replace('  ', ' ')) 
                     tmp = tmp.replace('%COUNTRY%', movie['more']['country'])
                 if 'rate' in movie['more']:
+                    movie['more']['rate'] = '%s' % (re.sub('[\\/:*?"<>|]', '', movie['more']['rate']).replace('  ', ' ')) 
                     tmp = tmp.replace('%RATE%', movie['more']['rate'])
                 if 'during' in movie['more']:
+                    movie['more']['during'] = '%s' % (re.sub('[\\/:*?"<>|]', '', movie['more']['during']).replace('  ', ' ')) 
                     tmp = tmp.replace('%DURING%', movie['more']['during'])
                 if 'genre' in movie['more']:
+                    movie['more']['genre'] = '%s' % (re.sub('[\\/:*?"<>|]', '', movie['more']['genre']).replace('  ', ' ')) 
                     genre_list = movie['more']['genre']
                     logger.debug('sm - genre_list:%s', genre_list)
                     logger.debug('sm - genre:%s', movie['more']['genre'])
