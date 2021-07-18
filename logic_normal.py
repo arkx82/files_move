@@ -380,7 +380,7 @@ class LogicNormal(object):
                     movie['more']['during'] = '%s' % (re.sub('[\\/:*?"<>|]', '', movie['more']['during'])) 
                     tmp = tmp.replace('%DURING%', movie['more']['during'])
                 if 'genre' in movie['more']:
-                    movie['more']['genre'][0] = (re.sub('[\\/:*?"<>|]', '', movie['more']['genre'][0])) 
+                    #movie['more']['genre'][0] = (re.sub('[\\/:*?"<>|]', '', movie['more']['genre'][0])) 
                     genre_list = movie['more']['genre']
                     logger.debug('sm - genre_list:%s', genre_list)
                     logger.debug('sm - genre:%s', movie['more']['genre'])
