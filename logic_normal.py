@@ -368,19 +368,19 @@ class LogicNormal(object):
                         movie['more']['country'] = movie['country']
 
                 if 'eng_title' in movie['more']:
-                    movie['more']['eng_title'] = '%s' % (re.sub('[\\/:*?"<>|]', '', movie['more']['eng_title']).replace('  ', ' '))                    
+                    movie['more']['eng_title'] = '%s' % (re.sub('[\\/:*?"<>|]', '', movie['more']['eng_title']))                    
                     tmp = tmp.replace('%ENG_TITLE%', movie['more']['eng_title'])
                 if 'country' in movie['more']:
-                    movie['more']['country'] = '%s' % (re.sub('[\\/:*?"<>|]', '', movie['more']['country']).replace('  ', ' ')) 
+                    movie['more']['country'] = '%s' % (re.sub('[\\/:*?"<>|]', '', movie['more']['country'])) 
                     tmp = tmp.replace('%COUNTRY%', movie['more']['country'])
                 if 'rate' in movie['more']:
-                    movie['more']['rate'] = '%s' % (re.sub('[\\/:*?"<>|]', '', movie['more']['rate']).replace('  ', ' ')) 
+                    movie['more']['rate'] = '%s' % (re.sub('[\\/:*?"<>|]', '', movie['more']['rate'])) 
                     tmp = tmp.replace('%RATE%', movie['more']['rate'])
                 if 'during' in movie['more']:
-                    movie['more']['during'] = '%s' % (re.sub('[\\/:*?"<>|]', '', movie['more']['during']).replace('  ', ' ')) 
+                    movie['more']['during'] = '%s' % (re.sub('[\\/:*?"<>|]', '', movie['more']['during'])) 
                     tmp = tmp.replace('%DURING%', movie['more']['during'])
                 if 'genre' in movie['more']:
-                    movie['more']['genre'] = '%s' % (re.sub('[\\/:*?"<>|]', '', movie['more']['genre']).replace('  ', ' ')) 
+                    movie['more']['genre'] = '%s' % (re.sub('[\\/:*?"<>|]', '', movie['more']['genre'])) 
                     genre_list = movie['more']['genre']
                     logger.debug('sm - genre_list:%s', genre_list)
                     logger.debug('sm - genre:%s', movie['more']['genre'])
