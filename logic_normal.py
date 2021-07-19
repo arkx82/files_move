@@ -372,6 +372,7 @@ class LogicNormal(object):
                     tmp = tmp.replace('%ENG_TITLE%', movie['more']['eng_title'])
                 if 'country' in movie['more']:
                     #movie['more']['country'] = '%s' % (re.sub('[\\/:*?"<>''|]', '', movie['more']['country'])) 
+                    movie['more']['country'] = '%s' % (re.sub('\'', '', movie['more']['country']))
                     tmp = tmp.replace('%COUNTRY%', movie['more']['country'])
                 if 'rate' in movie['more']:
                     #movie['more']['rate'] = '%s' % (re.sub('[\\/:*?"<>''|]', '', movie['more']['rate'])) 
