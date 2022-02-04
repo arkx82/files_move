@@ -233,6 +233,7 @@ class MovieSearch(object):
             # res = session.get(url, headers=headers, cookies=SystemLogicSite.get_daum_cookies())
             # data = res.json()
             data = requests.get(url).json()
+            title = ''
             for idx, item in enumerate(data['result']['search_result']['documents']):
                 item = item['document']
                 if idx > 50:
@@ -244,9 +245,9 @@ class MovieSearch(object):
 
             score = 85
             movie_cmp = re.sub('[\\/:*?"<>|]', '', movie_name)
-            title_ = re.sub('[\\/:*?"<>|]', '', title)
-            logger.debug('smw - first title:%s', title_)
-            if title_ == movie_cmp and int(year) == int(movie_year):
+            title = re.sub('[\\/:*?"<>|]', '', title)
+            logger.debug('smw - first title:%s', title)
+            if title == movie_cmp and int(year) == int(movie_year):
                 score = 95
             ##elif tmps[0].find(movie_cmp) != -1 and int(tmps[3]) == int(movie_year):
                 ##score = 95
@@ -258,7 +259,7 @@ class MovieSearch(object):
             if score < 10:
                 score = 10
 
-            MovieSearch.movie_append(movie_list, {'id':movieId, 'title':title_, 'year':year, 'score':score})
+            MovieSearch.movie_append(movie_list, {'id':movieId, 'title':title, 'year':year, 'score':score})
         except Exception as exception:
             logger.error('Exception:%s', exception)
             logger.error(traceback.format_exc())
