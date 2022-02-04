@@ -154,9 +154,9 @@ class LogicNormal(object):
                         if u'poster.jpg' in f or u'poster.png' in f or u'movie.nfo' in f or u'fanart.jpg' in f or u'fanart.png' in f:
                             extraFilesPath = os.path.split(p)
                             #logger.debug('efm - eFP:%s base:%s', extraFilesPath[0], base_path)
-                            (check, dest) = LogicNormal.check_from_db_for_extra_files(extraFilesPath[0])
+                            dest = LogicNormal.check_from_db_for_extra_files(extraFilesPath[0])
                             #logger.debug('efm - check:%s dest:%s', check, dest)
-                            if check and dest != error_path:
+                            if dest != error_path:
                                 shutil.move(p, dest)
                                 logger.debug('[extra files move] %s => %s', p, dest)
                     elif os.path.isdir(p):
@@ -182,8 +182,8 @@ class LogicNormal(object):
                     p = os.path.join(base_path.strip(), f)
                     #logger.debug('p:%s', p)
                     if os.path.isdir(p):
-                        (check, dest) = LogicNormal.check_from_db(p, base_path)
-                        if check and dest != error_path:
+                        dest = LogicNormal.check_from_db(p, base_path)
+                        if dest != error_path:
                             sub_list = os.listdir(p.strip())
                             for sub_f in sub_list:
                                 if LogicNormal.isHangul(str(sub_f)) > 0:
@@ -368,20 +368,20 @@ class LogicNormal(object):
                         movie['more']['country'] = movie['country']
 
                 if 'eng_title' in movie['more']:
-                    #movie['more']['eng_title'] = '%s' % (re.sub('[\\/:*?"<>''|]', '', movie['more']['eng_title']))                    
+                    #movie['more']['eng_title'] = '%s' % (re.sub('[\\/:*?"<>''|]', '', movie['more']['eng_title']))
                     tmp = tmp.replace('%ENG_TITLE%', movie['more']['eng_title'])
                 if 'country' in movie['more']:
-                    #movie['more']['country'] = '%s' % (re.sub('[\\/:*?"<>''|]', '', movie['more']['country'])) 
+                    #movie['more']['country'] = '%s' % (re.sub('[\\/:*?"<>''|]', '', movie['more']['country']))
                     movie['more']['country'] = '%s' % (re.sub('\'', '', movie['more']['country']))
                     tmp = tmp.replace('%COUNTRY%', movie['more']['country'])
                 if 'rate' in movie['more']:
-                    #movie['more']['rate'] = '%s' % (re.sub('[\\/:*?"<>''|]', '', movie['more']['rate'])) 
+                    #movie['more']['rate'] = '%s' % (re.sub('[\\/:*?"<>''|]', '', movie['more']['rate']))
                     tmp = tmp.replace('%RATE%', movie['more']['rate'])
                 if 'during' in movie['more']:
-                    #movie['more']['during'] = '%s' % (re.sub('[\\/:*?"<>''|]', '', movie['more']['during'])) 
+                    #movie['more']['during'] = '%s' % (re.sub('[\\/:*?"<>''|]', '', movie['more']['during']))
                     tmp = tmp.replace('%DURING%', movie['more']['during'])
                 if 'genre' in movie['more']:
-                    #movie['more']['genre'][0] = (re.sub('[\\/:*?"<>|]', '', movie['more']['genre'][0])) 
+                    #movie['more']['genre'][0] = (re.sub('[\\/:*?"<>|]', '', movie['more']['genre'][0]))
                     genre_list = movie['more']['genre']
                     logger.debug('sm - genre_list:%s', genre_list)
                     logger.debug('sm - genre:%s', movie['more']['genre'])
@@ -974,8 +974,8 @@ class LogicNormal(object):
                 logger.debug('[cfd] %s : %s', checkPathDir, checkDbDir)
                 if subCheckDbDir[1] == checkPathDir[1]:
                     logger.debug('[cfd] %s', path)
-                    return (path, item.targetPath)
-        return (None, None)
+                    return item.targetPath
+        return None
 
     @staticmethod
     def check_from_db(path, base):
@@ -994,8 +994,8 @@ class LogicNormal(object):
                 logger.debug('[cfd] %s : %s', checkPathDir, checkDbDir)
                 if subCheckDbDir[1] == checkPathDir[1]:
                     logger.debug('[cfd] %s', path)
-                    return (path, item.targetPath)
-        return (None, None)
+                    return item.targetPath
+        return None
 
     @staticmethod
     def isHangul(text):
