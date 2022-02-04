@@ -329,7 +329,7 @@ class LogicNormal(object):
                                      LogicNormal.move_except(item, error_target_path)
                             else:
                                  LogicNormal.move_except(item, error_target_path)
-                        elif 'eng_title' in daum_movie_info[0]['eng_title']:
+                        elif daum_movie_info[0]['eng_title'] is not None:
                             logger.debug('cml2 - movie %s:%s', item['guessit']['title'], daum_movie_info[0]['more']['eng_title'])
                             str_cmp_0 = re.sub('[^A-Za-z0-9\s]', '', item['guessit']['title'])
                             str_cmp_0 = py_unicode(str_cmp_0.strip())
