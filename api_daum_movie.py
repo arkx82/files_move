@@ -374,6 +374,7 @@ class MovieSearch(object):
                     if runtime != 0:
                         movie_list[0]['more']['during'] = py_unicode(runtime)
 
+                    movie_list[0]['eng_title'] = py_unicode(meta_data['movieCommon']['titleEnglish'])
                     movie_list[0]['more']['eng_title'] = py_unicode(meta_data['movieCommon']['titleEnglish'])
                     logger.debug('smw - eng_title:%s', movie_list[0]['more']['eng_title'])
                     movie_list[0]['more']['genre'].append(meta_data['movieCommon']['genres'])
