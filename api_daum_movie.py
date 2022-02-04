@@ -250,13 +250,14 @@ class MovieSearch(object):
                 score = 95
             ##elif tmps[0].find(movie_cmp) != -1 and int(tmps[3]) == int(movie_year):
                 ##score = 95
-            elif int(year) == int(movie_year) or abs(int(year) - int(movie_year)) <= 1:
+            elif int(year) == int(movie_year) or abs(int(year) - int(movie_year)) <= 2:
                 score = score + 6
             else:
                 score -= idx * 5
 
             if score < 10:
                 score = 10
+
             MovieSearch.movie_append(movie_list, {'id':movieId, 'title':title, 'year':year, 'score':score})
         except Exception as exception:
             logger.error('Exception:%s', exception)
@@ -376,7 +377,7 @@ class MovieSearch(object):
                     logger.debug('smw - eng_title:%s', movie_list[0]['more']['eng_title'])
                     movie_list[0]['more']['genre'].append(meta_data['movieCommon']['genres'])
                     logger.debug('smw - genre:%s', movie_list[0]['more']['genre'])
-                    movie_list[0]['country'] = py_unicode(nara)                    
+                    movie_list[0]['country'] = py_unicode(nara)
                     logger.debug('smw - country:%s', movie_list[0]['country'])
             except Exception as exception:
                 pass
