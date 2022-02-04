@@ -311,37 +311,24 @@ class LogicNormal(object):
                         LogicNormal.move_movie(item, daum_movie_info[0], movie_target_path)
                     elif daum_movie_info and daum_movie_info[0]['score'] >= 90:
                         logger.debug('cml - movie score %s', daum_movie_info[0]['score'])
-                        if 'more' in daum_movie_info[0]:
-                            if 'eng_title' in daum_movie_info[0]['more']:
+                        if 'more' in daum_movie_info[1] and daum_movie_info[1] is not None:
+                            if 'eng_title' in daum_movie_info[1]['more']:
                                 logger.debug('cml - movie %s:%s', item['guessit']['title'], daum_movie_info[0]['more']['eng_title'])
                                 #if LogicNormal.isHangul(str_cmp_0) > 0:
                                     #korean = re.compile('[\u3130-\u318F\uAC00-\uD7A3]+')
                                 str_cmp_0 = re.sub('[^A-Za-z0-9\s]', '', item['guessit']['title'])
                                 str_cmp_0 = py_unicode(str_cmp_0.strip())
-                                str_cmp_1 = daum_movie_info[0]['more']['eng_title']
+                                str_cmp_1 = daum_movie_info[1]['more']['eng_title']
                                 str_cmp_1 = py_unicode(str_cmp_1)
                                 logger.debug('cml - movie cmp %s:%s', str_cmp_0.lower(), str_cmp_1.lower())
                                 if str_cmp_0.lower() == str_cmp_1.lower():
                                     logger.debug('cml - movie file name checked!')
-                                    LogicNormal.set_movie(item, daum_movie_info[0])
-                                    LogicNormal.move_movie(item, daum_movie_info[0], movie_target_path)
+                                    LogicNormal.set_movie(item, daum_movie_info[1])
+                                    LogicNormal.move_movie(item, daum_movie_info[1], movie_target_path)
                                 else:
                                      LogicNormal.move_except(item, error_target_path)
                             else:
                                  LogicNormal.move_except(item, error_target_path)
-                        elif daum_movie_info[0]['eng_title'] is not None:
-                            logger.debug('cml2 - movie %s:%s', item['guessit']['title'], daum_movie_info[0]['more']['eng_title'])
-                            str_cmp_0 = re.sub('[^A-Za-z0-9\s]', '', item['guessit']['title'])
-                            str_cmp_0 = py_unicode(str_cmp_0.strip())
-                            str_cmp_1 = daum_movie_info[0]['more']['eng_title']
-                            str_cmp_1 = py_unicode(str_cmp_1)
-                            logger.debug('cml2 - movie cmp %s:%s', str_cmp_0.lower(), str_cmp_1.lower())
-                            if str_cmp_0.lower() == str_cmp_1.lower():
-                                logger.debug('cml2 - movie file name checked!')
-                                LogicNormal.set_movie(item, daum_movie_info[0])
-                                LogicNormal.move_movie(item, daum_movie_info[0], movie_target_path)
-                            else:
-                                LogicNormal.move_except(item, error_target_path)
                         else:
                              LogicNormal.move_except(item, error_target_path)
                     else:
